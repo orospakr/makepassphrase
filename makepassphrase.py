@@ -1,11 +1,16 @@
 #!/usr/bin/env python
 
+# Copyright (C) 2011-2012 Andrew Clunis <andrew@orospakr.ca>
+# MIT License.
+
+# http://xkcd.com/936/
+
 import re
 import codecs
 import struct
 import math
 
-# http://xkcd.com/936/
+
 
 dict_file = codecs.open("/usr/share/dict/words", "r", "utf8")
 
@@ -32,9 +37,6 @@ f = open("/dev/random", "rb")
 for i in range(0, wanted_words):
     entropy = f.read(4) # get 32 bits of entropy
     n = struct.unpack("!I", entropy)[0]
-    # to get a number between 0 and our length, we're going to use
-    # floating point division, which doesn't seem ideal...
     selected = n % len(lowercased)
     print lowercased[selected]
-#    print(n *  size_ratio)
     
